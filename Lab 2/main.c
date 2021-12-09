@@ -45,6 +45,42 @@ uint1024_t add_op(uint1024_t x, uint1024_t y) {
     return sum;
 }
 
+int if_bigger(uint1024_t x, uint1024_t y) {
+    int flag = 0;
+    for (int i = 0; i < 35; i++) {
+        if (x.value[i] > y.value[i]) {
+            flag = 1;
+        } else if (x.value[i] < y.value[i]) {
+            if (!flag) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+uint1024_t subtr_op(uint1024_t x, uint1024_t y) {
+    uint1024_t diff = x;
+    if (if_bigger(x, y)) {
+        for (int i = 34; i >= 0; i--) {
+            if (y.value[i] != -1 * base) {
+                diff.value[i] -= y.value[i];
+            }
+            //printf("i: %d   X: %d    Y: %d  Value: %d\n", i, x.value[i], y.value[i], diff.value[i]);
+        }
+        for (int i = 34; i > 0; i--) {
+            if (diff.value[i] < 0 && diff.value[i] != -1 * base) {
+                diff.value[i] += base;
+                diff.value[i - 1]--;
+                //printf("i: %d      Value: %d\n", i, diff.value[i]);
+            }
+        }
+    } else {
+        printf("ERROR: Minuend is smaller than subtrahend\n");
+    }
+    return diff;
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
