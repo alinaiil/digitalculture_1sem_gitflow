@@ -1,0 +1,3 @@
+C:/Users/alina/Desktop/Programming Labs/Lab 2/cmake-build-debug/CMakeFiles/Lab_2.dir
+C:/Users/alina/Desktop/Programming Labs/Lab 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/alina/Desktop/Programming Labs/Lab 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
