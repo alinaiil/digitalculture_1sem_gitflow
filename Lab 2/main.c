@@ -24,6 +24,27 @@ uint1024_t from_uint(unsigned int x) {
     return a;
 }
 
+uint1024_t add_op(uint1024_t x, uint1024_t y) {
+    uint1024_t sum;
+    int carry = 0;
+    for (int i = 34; i >= 0; i--) {
+        if (x.value[i] == -1 * base) {
+            sum.value[i] = y.value[i];
+        } else {
+            if (y.value[i] == -1 * base) {
+                sum.value[i] = x.value[i];
+            } else {
+                sum.value[i] = (x.value[i] + y.value[i]) % base + carry;
+                carry = (x.value[i] + y.value[i]) / base;
+            }
+        }
+    }
+    if (carry) {
+        printf("ERROR Undefined behavior: Overflow\n");
+    }
+    return sum;
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
