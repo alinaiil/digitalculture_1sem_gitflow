@@ -42,11 +42,11 @@ int wordCounter() {
     int wordFlag = 0;
     while (current != EOF) {
         current = getchar();
-        if (wordFlag && (isWhitespace(current) || current == EOF)) {
+        if (!isWhitespace(current)) {
+            wordFlag = 1;
+        } else if (wordFlag && (isWhitespace(current) || current == EOF)) {
             counter++;
             wordFlag = 0;
-        } else if (!isWhitespace(current)) {
-            wordFlag = 1;
         }
     }
     return counter;
