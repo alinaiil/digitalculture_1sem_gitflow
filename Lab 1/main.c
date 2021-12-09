@@ -28,6 +28,14 @@ int byteCounter() {
     return counter;
 }
 
+int isWhitespace(int symbol) {
+    if (symbol == '\t' || symbol == '\n' || symbol == ' ' ||
+        symbol == '\v' || symbol == '\f' || symbol == '\r') {
+        return 1;
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Wrong number of arguments");
