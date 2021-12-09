@@ -8,6 +8,24 @@ typedef struct {
     int value[35];
 } uint1024_t;
 
+void scanf_value(uint1024_t *x, char val[]) {
+    int length = strlen(val);
+    //printf("Length: %d\n", length);
+    int needed = length / 9 + (length % 9 ? 1 : 0);
+    //printf("Needed: %d\n", needed);
+    for (int i = 0; i < 35 - needed; i++) {
+        x->value[i] = -1 * base;
+    }
+    int numbers = length % 9 + (!(length % 9) ? 9 : 0);
+    //printf("Numbers: %d\n", numbers);
+    put_digit(x, val, numbers, 35 - needed, 0);
+    int counter = 0;
+    for (int i = 36 - needed; i < 35; i++) {
+        put_digit(x, val, 9, i, numbers + (counter * 9));
+        counter++;
+    }
+}
+
 int main(int argc, char *argv[]) {
     uint1024_t a, b, c;
     unsigned int ui = 123456789;
