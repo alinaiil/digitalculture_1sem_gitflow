@@ -36,6 +36,22 @@ int isWhitespace(int symbol) {
     return 0;
 }
 
+int wordCounter() {
+    int current = 0;
+    int counter = 0;
+    int wordFlag = 0;
+    while (current != EOF) {
+        current = getchar();
+        if (wordFlag && (isWhitespace(current) || current == EOF)) {
+            counter++;
+            wordFlag = 0;
+        } else if (!isWhitespace(current)) {
+            wordFlag = 1;
+        }
+    }
+    return counter;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Wrong number of arguments");
