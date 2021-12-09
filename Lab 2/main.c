@@ -121,6 +121,32 @@ uint1024_t mult_op(uint1024_t x, uint1024_t y) {
     return product;
 }
 
+void printf_value(uint1024_t x) {
+    int flag = 0;
+    for (int i = 0; i < 35; i++) {
+        if (x.value[i] == -1 * base) {
+            continue;
+        } else if (x.value[i] == 0) {
+            if (i > 0) {
+                if (flag) {
+                    printf("000000000");
+                } else {
+                    if (i == 34) {
+                        printf("0");
+                    } else {
+                        continue;
+                    }
+                }
+            } else {
+                continue;
+            }
+        } else {
+            printf("%d", x.value[i]);
+            flag = 1;
+        }
+    }
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
