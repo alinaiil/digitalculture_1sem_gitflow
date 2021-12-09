@@ -18,7 +18,11 @@ int main(int argc, char *argv[]) {
         printf("Wrong number of arguments");
     } else {
         if (freopen(argv[2], "r", stdin) != NULL) {
-            
+            if (!strcmp(argv[1], "-l") || !strcmp(argv[1], "--lines")) {
+                printf("%d", lineCounter());
+            } else {
+                printf("Invalid command");
+            }
         } else {
             printf("Incorrect file name");
         }
