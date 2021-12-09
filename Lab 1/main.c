@@ -13,6 +13,21 @@ int lineCounter() {
     return counter;
 }
 
+int byteCounter() {
+    int counter = 0;
+    while (1) {
+        int current = getchar();
+        if (current == EOF) {
+            break;
+        }
+        counter++;
+        if (current == '\n') {
+            counter++;
+        }
+    }
+    return counter;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Wrong number of arguments");
