@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
         if (freopen(argv[2], "r", stdin) != NULL) {
             if (!strcmp(argv[1], "-l") || !strcmp(argv[1], "--lines")) {
                 printf("%d", lineCounter());
+            } else if (!strcmp(argv[1], "-c") || !strcmp(argv[1], "--bytes")) {
+                printf("%d", byteCounter());
             } else {
                 printf("Invalid command");
             }
