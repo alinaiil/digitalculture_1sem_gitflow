@@ -8,6 +8,22 @@ typedef struct {
     int value[35];
 } uint1024_t;
 
+uint1024_t from_uint(unsigned int x) {
+    uint1024_t a;
+    for (int i = 34; i >= 0; i--) {
+        a.value[i] = -1 * base;
+    }
+    int digit = 34;
+    if (!x) {
+        a.value[34] = 0;
+    }
+    while (x) {
+        a.value[digit--] = x % base;
+        x /= base;
+    }
+    return a;
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
