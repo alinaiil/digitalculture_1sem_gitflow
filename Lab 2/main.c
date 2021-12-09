@@ -175,8 +175,8 @@ void scanf_value(uint1024_t *x, char val[]) {
 }
 
 int main(int argc, char *argv[]) {
-	uint1024_t a, b, c;
 	unsigned int ui = 123456789;
+	uint1024_t a, b, c;
     scanf_value(&a, argv[1]);
     scanf_value(&b, argv[2]);
 
