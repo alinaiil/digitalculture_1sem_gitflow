@@ -81,6 +81,46 @@ uint1024_t subtr_op(uint1024_t x, uint1024_t y) {
     return diff;
 }
 
+uint1024_t mult_op(uint1024_t x, uint1024_t y) {
+    uint1024_t product;
+    for (int i = 0; i < 35; i++) {
+        product.value[i] = -1 * base;
+    }
+    for (int i = 34; i >= 0; i--) {
+        if (y.value[i] == -1 * base) {
+            break;
+        }
+        for (int j = 34; j >= 0; j--) {
+            if (x.value[j] == -1 * base) {
+                break;
+            }
+            long long tmp = 0;
+            if (!(y.value[i] == -1 * base && x.value[j] == -1 * base)) {
+                tmp = (y.value[i] * 1ll) * (x.value[j] * 1ll);
+                //printf("i: %d     j: %d    TMP: %lld\n", i, j, tmp);
+            }
+            if (tmp && i + j - 34 < 0) {
+                printf("%lld   ERROR Undefined behavior: Overflow\n", tmp);
+                return product;
+            } else {
+                if (product.value[i + j - 34] == -1 * base) {
+                    product.value[i + j - 34] = tmp % base;
+                } else {
+                    product.value[i + j - 34] += tmp % base;
+                }
+                //printf("Value [(%d) %d + %d - 34]:  %d\n\n", (i + j - 34), i, j, product.value[i + j - 34]);
+                if (product.value[i + j - 35] == -1 * base) {
+                    product.value[i + j - 35] = tmp / base + product.value[i + j - 34] / base;
+                } else {
+                    product.value[i + j - 35] += tmp / base + product.value[i + j - 34] / base;
+                }
+                product.value[i + j - 34] -= product.value[i + j - 34] / base * base;
+            }
+        }
+    }
+    return product;
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
