@@ -61,6 +61,8 @@ int main(int argc, char *argv[]) {
                 printf("%d", lineCounter());
             } else if (!strcmp(argv[1], "-c") || !strcmp(argv[1], "--bytes")) {
                 printf("%d", byteCounter());
+            } else if (!strcmp(argv[1], "-w") || !strcmp(argv[1], "--words")) {
+                printf("%d", wordCounter());
             } else {
                 printf("Invalid command");
             }
