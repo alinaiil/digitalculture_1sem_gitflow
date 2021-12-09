@@ -147,6 +147,15 @@ void printf_value(uint1024_t x) {
     }
 }
 
+void put_digit(uint1024_t *x, char val[], int numbers, int index, int valInd) {
+    char digit[numbers];
+    for (int i = 0; i < numbers; i++) {
+        digit[i] = val[valInd++];
+    }
+    x->value[index] = atoi(digit);
+    //printf("Digit: %d\n", atoi(digit));
+}
+
 void scanf_value(uint1024_t *x, char val[]) {
     int length = strlen(val);
     //printf("Length: %d\n", length);
