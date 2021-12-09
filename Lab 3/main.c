@@ -56,11 +56,13 @@ void maxRequestInterval(const int *timeList, int interval, int size) {
 int main() {
     FILE *logs = fopen("access_log_Jul95", "r");
     FILE *errList = fopen("500_error.txt", "w");
-
+	
+	
     char curLog[4096] = "";
     int errorCounter = 0;
     int strCounter = 0;
     int lineCounter = 0;
+
 
     int *timeList;
     timeList = (int *) malloc(2000000 * sizeof(int));
